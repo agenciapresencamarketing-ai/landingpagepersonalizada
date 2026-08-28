@@ -41,24 +41,22 @@
 
 <style>
   /* =========================================================
-     PALETA DE CORES E TEMA (ALTERE AQUI PARA MUDAR A PÁGINA)
+     PALETA DE CORES E TEMA
      ========================================================= */
   :root{
     --white:#FFFDFB;
-    --pink-soft:#F6DEE1;     /* Destaque suave / fundo stats */
-    --pink-pale:#FBEFF1;     /* Fundo alternado */
-    --rose-deep:#C98A93;     /* Cor principal (botões e textos) */
+    --pink-soft:#F6DEE1;
+    --pink-pale:#FBEFF1;
+    --rose-deep:#C98A93;
     --rose-deep-press:#B06E78;
-    --ink:#2B2422;           /* Cor do texto escuro */
-    --taupe:#8A7C79;         /* Cor do texto secundário */
-    --line:#ECD9DC;          /* Linhas e bordas */
+    --ink:#2B2422;
+    --taupe:#8A7C79;
+    --line:#ECD9DC;
     --radius-sm:12px;
     --radius-md:20px;
     --radius-lg:32px;
     --container:1200px;
     --ease:cubic-bezier(.22,.61,.36,1);
-    
-    /* Cor das bolinhas do carrossel */
     --swiper-theme-color: var(--rose-deep);
   }
 
@@ -70,6 +68,7 @@
     background:var(--white);
     line-height:1.55;
     overflow-x:hidden;
+    width: 100%;
   }
   img{max-width:100%;display:block;object-fit:cover;}
   a{color:inherit;text-decoration:none;}
@@ -99,7 +98,7 @@
   .btn-primary:active{background:var(--rose-deep-press);}
   .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
 
-  /* Animação de Surgimento (Reveal) */
+  /* Animação */
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
   .reveal.is-visible{opacity:1;transform:translateY(0);}
   .reveal-delay-1{transition-delay:.1s;}
@@ -140,7 +139,7 @@
   .stat-num{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,4vw,48px);color:var(--ink);}
   .stat-label{font-size:14px;color:var(--taupe);font-weight:600;margin-top:8px;}
 
-  /* SOBRE (Carrossel) */
+  /* SOBRE */
   .about .container{display:grid;grid-template-columns:0.85fr 1fr;gap:72px;align-items:center;}
   .about h2{font-size:clamp(28px,3.2vw,38px);margin-bottom:22px;}
   .about p{font-size:17px;color:var(--taupe);max-width:460px;}
@@ -149,7 +148,7 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     aspect-ratio: 1/1.05;
-    padding-bottom: 30px; /* Espaço para bolinhas */
+    padding-bottom: 30px; 
   }
   .about-swiper img { width: 100%; height: 100%; object-fit: cover; }
   .about-swiper .swiper-pagination { bottom: 0; }
@@ -165,30 +164,28 @@
   .service-body h3{font-size:19px;margin-bottom:8px;}
   .service-body p{font-size:14.5px;color:var(--taupe);}
 
-  /* RESULTADOS (Ajustado para não cortar fotos) */
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    align-items: start; /* Impede que imagens menores sejam esticadas */
+  /* RESULTADOS CARROSSEL */
+  .results-swiper {
+    padding-bottom: 50px !important; 
+    width: 100%;
   }
-  .results-grid figure {
+  .results-swiper figure {
     border-radius: var(--radius-md);
     overflow: hidden;
-    background: transparent; /* Remove o fundo para não sobrar bordas */
+    background: transparent; 
+    margin: 0;
   }
-  .results-grid figure img {
+  .results-swiper figure img {
     width: 100%;
-    height: auto; /* Mantém a proporção original da foto */
-    object-fit: contain; /* Exibe a imagem inteira sem cortar nada */
+    height: auto;
+    object-fit: contain; 
     border-radius: var(--radius-md);
+    display: block;
   }
 
-  /* DEPOIMENTOS (Carrossel Netflix Style) */
+  /* DEPOIMENTOS */
   .testimonials{background:var(--pink-pale);}
-  .testi-swiper {
-    padding-bottom: 50px !important; /* Espaço para as bolinhas */
-  }
+  .testi-swiper {padding-bottom: 50px !important;}
   .testi-card{background:var(--white);border-radius:var(--radius-md);padding:34px 30px; height: 100%;}
   .testi-card .stars{display:flex;gap:3px;margin-bottom:20px;}
   .testi-card .stars svg{width:15px;height:15px;fill:var(--rose-deep);}
@@ -210,7 +207,7 @@
   .faq-item[open] .faq-icon::after{transform:rotate(90deg) scaleX(0);}
   .faq-item p{font-size:15.5px;color:var(--taupe);padding:0 4px 28px;max-width:600px;}
 
-  /* CTA FINAL COM MAPA */
+  /* CTA FINAL */
   .cta-final{
     background:var(--ink);
     border-radius:var(--radius-lg);
@@ -246,7 +243,7 @@
   .footer-col a,.footer-col li{font-size:14.5px;font-weight:600;}
   .footer-bottom{display:flex;justify-content:space-between;padding-top:28px;font-size:13px;color:var(--taupe);}
 
-  /* RESPONSIVO */
+  /* RESPONSIVO (Ajustes para Mobile First) */
   @media (max-width:980px){
     section{padding:80px 0;}
     .nav-links, .nav-cta .btn-primary{display:none;}
@@ -254,13 +251,17 @@
     .hero .container{grid-template-columns:1fr;gap:48px;}
     .about .container{grid-template-columns:1fr;gap:40px;}
     .services-grid{grid-template-columns:repeat(2,1fr);}
-    .results-grid {grid-template-columns: repeat(2, 1fr);}
     .cta-final{grid-template-columns:1fr;padding:56px 32px;margin:0 20px;}
     .footer-top{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:560px){
-    .services-grid, .results-grid{grid-template-columns:1fr;}
-    .cta-final{padding:44px 24px;}
+    .container{padding:0 24px;} /* Restaura o padding das laterais */
+    .nav{padding:18px 24px;}
+    section{padding:60px 0;}
+    .hero{padding:40px 0 60px;}
+    .services-grid{grid-template-columns:1fr;}
+    .cta-final{padding:44px 24px; margin: 0;} 
+    .footer-top{grid-template-columns:1fr;gap:32px;}
   }
 
   /* CTA FIXO WHATSAPP */
@@ -331,21 +332,17 @@
     </div>
   </section>
 
-  <!-- SOBRE COM CARROSSEL -->
+  <!-- SOBRE -->
   <section class="about" id="espaco">
     <div class="container">
-      
-      <!-- INÍCIO DO CARROSSEL DE FOTOS DO ESPAÇO -->
       <div class="swiper about-swiper reveal">
         <div class="swiper-wrapper">
-          <!-- EDITAR: Adicione as 3 fotos do estabelecimento aqui -->
           <div class="swiper-slide"><img src="./img/sobre1.webp" alt="Espaço 1"></div>
           <div class="swiper-slide"><img src="./img/sobre2.webp" alt="Espaço 2"></div>
           <div class="swiper-slide"><img src="./img/sobre3.webp" alt="Espaço 3"></div>
         </div>
         <div class="swiper-pagination"></div>
       </div>
-
       <div>
         <span class="eyebrow reveal">Sobre Nós</span>
         <h2 class="reveal reveal-delay-1">Nosso jeito de cuidar</h2>
@@ -370,7 +367,7 @@
     </div>
   </section>
 
-  <!-- RESULTADOS (Ajustado) -->
+  <!-- RESULTADOS (AGORA É UM CARROSSEL RESPONSIVO) -->
   <section id="resultados">
     <div class="container">
       <div class="section-head">
@@ -378,18 +375,24 @@
         <h2 class="reveal reveal-delay-1">Resultados reais</h2>
       </div>
       
-      <!-- BLOCO DE 3 FOTOS LIMPAS -->
-      <div class="results-grid">
-        <!-- EDITAR: Fotos de resultados do cliente -->
-        <figure class="reveal"><img src="./img/resultado1.webp" alt="Resultado 1"></figure>
-        <figure class="reveal reveal-delay-1"><img src="./img/resultado2.webp" alt="Resultado 2"></figure>
-        <figure class="reveal reveal-delay-2"><img src="./img/resultado3.webp" alt="Resultado 3"></figure>
+      <div class="swiper results-swiper reveal reveal-delay-2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <figure><img src="./img/resultado1.webp" alt="Resultado 1"></figure>
+          </div>
+          <div class="swiper-slide">
+            <figure><img src="./img/resultado2.webp" alt="Resultado 2"></figure>
+          </div>
+          <div class="swiper-slide">
+            <figure><img src="./img/resultado3.webp" alt="Resultado 3"></figure>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
       </div>
-
     </div>
   </section>
 
-  <!-- DEPOIMENTOS (CARROSSEL ESTILO NETFLIX) -->
+  <!-- DEPOIMENTOS -->
   <section class="testimonials" id="depoimentos">
     <div class="container">
       <div class="section-head">
@@ -397,11 +400,8 @@
         <h2 class="reveal reveal-delay-1">Quem já passou por aqui</h2>
       </div>
       
-      <!-- INÍCIO DO CARROSSEL DE DEPOIMENTOS -->
       <div class="swiper testi-swiper reveal reveal-delay-2">
         <div class="swiper-wrapper">
-          
-          <!-- Card 1 -->
           <div class="swiper-slide">
             <div class="testi-card">
               <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
@@ -409,8 +409,6 @@
               <div class="testi-person"><div class="testi-avatar">MS</div><div><div class="testi-name">Marina S.</div><div class="testi-role">Cliente desde 2023</div></div></div>
             </div>
           </div>
-          
-          <!-- Card 2 -->
           <div class="swiper-slide">
             <div class="testi-card">
               <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
@@ -418,8 +416,6 @@
               <div class="testi-person"><div class="testi-avatar">JR</div><div><div class="testi-name">Juliana R.</div><div class="testi-role">Cliente desde 2022</div></div></div>
             </div>
           </div>
-
-          <!-- Card 3 -->
           <div class="swiper-slide">
             <div class="testi-card">
               <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
@@ -427,8 +423,6 @@
               <div class="testi-person"><div class="testi-avatar">CT</div><div><div class="testi-name">Camila T.</div><div class="testi-role">Cliente desde 2024</div></div></div>
             </div>
           </div>
-          
-          <!-- Card 4 (Adicionado para dar o efeito de loop infinito) -->
           <div class="swiper-slide">
             <div class="testi-card">
               <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
@@ -436,15 +430,13 @@
               <div class="testi-person"><div class="testi-avatar">AM</div><div><div class="testi-name">Amanda M.</div><div class="testi-role">Cliente desde 2023</div></div></div>
             </div>
           </div>
-
         </div>
         <div class="swiper-pagination"></div>
       </div>
-
     </div>
   </section>
 
-  <!-- CTA FINAL E MAPA INTERATIVO -->
+  <!-- CTA FINAL E MAPA -->
   <section id="contato" style="padding:0 0 120px;">
     <div class="cta-final reveal">
       <div>
@@ -463,9 +455,7 @@
           <div class="v">Terça a sábado, 9h às 19h</div>
         </div>
         
-        <!-- MAPA INTERATIVO GOOGLE MAPS -->
         <div class="map-wrapper">
-          <!-- EDITAR: Cole o iframe do Google Maps do seu cliente aqui -->
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122556.70295147573!2d-56.17720986799042!3d-15.601550995574345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x939db16e35570d55%3A0xd211e4f4dc5b23d5!2sCuiab%C3%A1%2C%20MT!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
@@ -478,7 +468,7 @@
   <div class="container">
     <div class="footer-top">
       <div>
-        <span class="logo-mark">Sara Rauber</span>
+        <span class="logo-mark">NOME DO CLIENTE</span>
       </div>
       <div class="footer-col">
         <h4>Navegação</h4>
@@ -496,14 +486,13 @@
   </div>
 </footer>
 
-<!-- CTA Fixo WhatsApp -->
 <a href="https://wa.me/5565999999999" target="_blank" class="cta-fixed">
   <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   Agendar via WhatsApp
 </a>
 
 <!-- =========================================================
-     SCRIPTS: SWIPER JS, ANIMAÇÕES E MENU
+     SCRIPTS
      ========================================================= -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
@@ -512,23 +501,36 @@
     loop: true,
     autoplay: { delay: 3500, disableOnInteraction: false },
     pagination: { el: '.swiper-pagination', clickable: true },
-    effect: 'fade', // Transição suave entre as fotos
+    effect: 'fade',
+  });
+
+  // Inicializa Carrossel "Resultados" (NOVO)
+  const resultsSwiper = new Swiper('.results-swiper', {
+    loop: true,
+    slidesPerView: 1, // Celular exibe 1 foto por vez (Evita quebrar a tela)
+    spaceBetween: 24,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    autoplay: { delay: 3500, disableOnInteraction: false },
+    breakpoints: {
+      768: { slidesPerView: 2 }, 
+      1024: { slidesPerView: 3 } // PC exibe 3
+    }
   });
 
   // Inicializa Carrossel "Depoimentos"
   const testiSwiper = new Swiper('.testi-swiper', {
     loop: true,
-    slidesPerView: 1, // Celular exibe 1 card
+    slidesPerView: 1, 
     spaceBetween: 24,
     pagination: { el: '.swiper-pagination', clickable: true },
     autoplay: { delay: 4000, disableOnInteraction: false },
     breakpoints: {
-      768: { slidesPerView: 2 }, // Tablet exibe 2 cards
-      1024: { slidesPerView: 3 } // PC exibe 3 cards
+      768: { slidesPerView: 2 }, 
+      1024: { slidesPerView: 3 } 
     }
   });
 
-  // Animação de entrada (Reveal)
+  // Animações Reveal
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -537,7 +539,7 @@
   }, {threshold:0.15});
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // Contadores Animados
+  // Contadores
   const counters = document.querySelectorAll('.stat-num');
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
