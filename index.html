@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- =========================================================
+     SEO & META TAGS - EDITAR DADOS DO CLIENTE
+     ========================================================= -->
+<title>Clínica Sara Rauber | Harmonização Facial</title>
+<meta name="description" content="Descrição rápida do negócio para o Google. Coloque a cidade e principais serviços aqui.">
+<link rel="canonical" href="https://seusite.com.br/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- Open Graph (Preview do WhatsApp e Redes Sociais) -->
+<meta property="og:title" content="NOME DO CLIENTE">
+<meta property="og:description" content="Tratamentos faciais, cabelo, unhas e massagem. Agende seu horário.">
+<meta property="og:image" content="./img/hero.webp">
+<meta property="og:url" content="https://seusite.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Google Analytics 4 -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script> -->
+
+<!-- Fontes Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- CSS do Swiper (Biblioteca de Carrossel) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  /* =========================================================
+     PALETA DE CORES E TEMA (ALTERE AQUI PARA MUDAR A PÁGINA)
+     ========================================================= */
+  :root{
+    --white:#FFFDFB;
+    --pink-soft:#F6DEE1;     /* Destaque suave / fundo stats */
+    --pink-pale:#FBEFF1;     /* Fundo alternado */
+    --rose-deep:#C98A93;     /* Cor principal (botões e textos) */
+    --rose-deep-press:#B06E78;
+    --ink:#2B2422;           /* Cor do texto escuro */
+    --taupe:#8A7C79;         /* Cor do texto secundário */
+    --line:#ECD9DC;          /* Linhas e bordas */
+    --radius-sm:12px;
+    --radius-md:20px;
+    --radius-lg:32px;
+    --container:1200px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    
+    /* Cor das bolinhas do carrossel */
+    --swiper-theme-color: var(--rose-deep);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;object-fit:cover;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit;border:none;background:none;cursor:pointer;}
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.12;
+  }
+  em{font-style:italic;font-weight:500;color:var(--rose-deep);}
+  .container{max-width:var(--container);margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-size:13px;font-weight:700;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--rose-deep);display:block;margin-bottom:14px;
+  }
+  section{padding:120px 0;}
+
+  /* Botões */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:10px;padding:16px 30px;border-radius:999px;
+    font-weight:700;font-size:15px;white-space:nowrap;
+  }
+  .btn-primary{background:var(--rose-deep);color:var(--white);}
+  .btn-primary:active{background:var(--rose-deep-press);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+
+  /* Animação de Surgimento (Reveal) */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;}
+  .reveal-delay-2{transition-delay:.2s;}
+  .reveal-delay-3{transition-delay:.3s;}
+
+  /* HEADER */
+  .site-header{position:sticky;top:0;z-index:100;background:rgba(255,253,251,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:var(--container);margin:0 auto;}
+  .logo{display:flex;flex-direction:column;line-height:1;}
+  .logo-mark{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:26px;color:var(--ink);}
+  .logo-sub{font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--taupe);margin-top:4px;}
+  .nav-links{display:flex;gap:40px;}
+  .nav-links a{font-size:14.5px;font-weight:600;}
+  .nav-cta{display:flex;align-items:center;gap:20px;}
+  .nav-toggle{display:none;width:40px;height:40px;align-items:center;justify-content:center;}
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{content:"";display:block;width:22px;height:2px;background:var(--ink);position:relative;transition:transform .3s var(--ease), opacity .3s var(--ease);}
+  .nav-toggle span::before{position:absolute;top:-7px;}
+  .nav-toggle span::after{position:absolute;top:7px;}
+  .nav-toggle.is-open span{background:transparent;}
+  .nav-toggle.is-open span::before{transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.is-open span::after{transform:translateY(-7px) rotate(-45deg);}
+  .mobile-panel{display:none;flex-direction:column;padding:8px 32px 28px;border-bottom:1px solid var(--line);}
+  .mobile-panel a{padding:14px 0;font-size:16px;font-weight:600;border-bottom:1px solid var(--line);}
+  .mobile-panel.is-open{display:flex;}
+
+  /* HERO */
+  .hero{padding:88px 0 100px;}
+  .hero .container{display:grid;grid-template-columns:1fr 0.92fr;gap:64px;align-items:center;}
+  .hero h1{font-size:clamp(38px,4.6vw,58px);margin-bottom:26px;}
+  .hero p{font-size:18px;color:var(--taupe);max-width:440px;margin-bottom:38px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-media-frame{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;background:var(--pink-soft);}
+
+  /* STATS */
+  .stats{background:var(--pink-soft);padding:76px 0;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+  .stat-num{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,4vw,48px);color:var(--ink);}
+  .stat-label{font-size:14px;color:var(--taupe);font-weight:600;margin-top:8px;}
+
+  /* SOBRE (Carrossel) */
+  .about .container{display:grid;grid-template-columns:0.85fr 1fr;gap:72px;align-items:center;}
+  .about h2{font-size:clamp(28px,3.2vw,38px);margin-bottom:22px;}
+  .about p{font-size:17px;color:var(--taupe);max-width:460px;}
+  .about-swiper {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1/1.05;
+    padding-bottom: 30px; /* Espaço para bolinhas */
+  }
+  .about-swiper img { width: 100%; height: 100%; object-fit: cover; }
+  .about-swiper .swiper-pagination { bottom: 0; }
+
+  /* SERVIÇOS */
+  .services{background:var(--pink-pale);}
+  .section-head{text-align:center;max-width:560px;margin:0 auto 64px;}
+  .section-head h2{font-size:clamp(28px,3.2vw,38px);}
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .service-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;}
+  .service-media{aspect-ratio:3/4;}
+  .service-body{padding:22px 22px 26px;}
+  .service-body h3{font-size:19px;margin-bottom:8px;}
+  .service-body p{font-size:14.5px;color:var(--taupe);}
+
+  /* RESULTADOS (Ajustado para não cortar fotos) */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start; /* Impede que imagens menores sejam esticadas */
+  }
+  .results-grid figure {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: transparent; /* Remove o fundo para não sobrar bordas */
+  }
+  .results-grid figure img {
+    width: 100%;
+    height: auto; /* Mantém a proporção original da foto */
+    object-fit: contain; /* Exibe a imagem inteira sem cortar nada */
+    border-radius: var(--radius-md);
+  }
+
+  /* DEPOIMENTOS (Carrossel Netflix Style) */
+  .testimonials{background:var(--pink-pale);}
+  .testi-swiper {
+    padding-bottom: 50px !important; /* Espaço para as bolinhas */
+  }
+  .testi-card{background:var(--white);border-radius:var(--radius-md);padding:34px 30px; height: 100%;}
+  .testi-card .stars{display:flex;gap:3px;margin-bottom:20px;}
+  .testi-card .stars svg{width:15px;height:15px;fill:var(--rose-deep);}
+  .testi-card p{font-size:15.5px;color:var(--ink);margin-bottom:24px;}
+  .testi-person{display:flex;align-items:center;gap:12px;}
+  .testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--pink-soft);color:var(--rose-deep);display:flex;align-items:center;justify-content:center;font-weight:600;}
+  .testi-name{font-size:14px;font-weight:700;}
+  .testi-role{font-size:12.5px;color:var(--taupe);}
+
+  /* FAQ */
+  .faq-list{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{display:flex;align-items:center;justify-content:space-between;padding:26px 4px;font-family:'Fraunces',serif;font-size:19px;font-weight:500;cursor:pointer;list-style:none;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-icon{width:28px;height:28px;border-radius:50%;background:var(--pink-pale);display:flex;align-items:center;justify-content:center;position:relative;}
+  .faq-icon::before,.faq-icon::after{content:"";position:absolute;background:var(--rose-deep);transition:transform .3s var(--ease);}
+  .faq-icon::before{width:11px;height:1.6px;}
+  .faq-icon::after{width:1.6px;height:11px;}
+  .faq-item[open] .faq-icon::after{transform:rotate(90deg) scaleX(0);}
+  .faq-item p{font-size:15.5px;color:var(--taupe);padding:0 4px 28px;max-width:600px;}
+
+  /* CTA FINAL COM MAPA */
+  .cta-final{
+    background:var(--ink);
+    border-radius:var(--radius-lg);
+    margin:0 32px;
+    padding:88px 64px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:start;
+    max-width:calc(var(--container) - 64px);
+    margin-left:auto;margin-right:auto;
+  }
+  .cta-final h2{color:var(--white);font-size:clamp(28px,3.4vw,42px);margin-bottom:20px;}
+  .cta-final p{color:rgba(255,253,251,0.68);font-size:16px;margin-bottom:34px;max-width:420px;}
+  .cta-contact{display:flex;flex-direction:column;gap:22px;}
+  .cta-contact-item{color:var(--white);}
+  .cta-contact-item .k{font-size:12px;text-transform:uppercase;color:rgba(255,253,251,0.5);font-weight:700;margin-bottom:6px;}
+  .cta-contact-item .v{font-size:16px;font-weight:600;}
+  .map-wrapper {
+    margin-top: 20px;
+    width: 100%;
+    height: 180px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .map-wrapper iframe { width: 100%; height: 100%; border: none; }
+
+  /* FOOTER */
+  .site-footer{padding:90px 0 40px;}
+  .footer-top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid var(--line);}
+  .footer-col h4{font-size:13px;text-transform:uppercase;color:var(--taupe);margin-bottom:18px;font-weight:700;}
+  .footer-col ul{display:grid;gap:12px;}
+  .footer-col a,.footer-col li{font-size:14.5px;font-weight:600;}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:28px;font-size:13px;color:var(--taupe);}
+
+  /* RESPONSIVO */
+  @media (max-width:980px){
+    section{padding:80px 0;}
+    .nav-links, .nav-cta .btn-primary{display:none;}
+    .nav-toggle{display:flex;}
+    .hero .container{grid-template-columns:1fr;gap:48px;}
+    .about .container{grid-template-columns:1fr;gap:40px;}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .results-grid {grid-template-columns: repeat(2, 1fr);}
+    .cta-final{grid-template-columns:1fr;padding:56px 32px;margin:0 20px;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .services-grid, .results-grid{grid-template-columns:1fr;}
+    .cta-final{padding:44px 24px;}
+  }
+
+  /* CTA FIXO WHATSAPP */
+  .cta-fixed{
+    position:fixed;bottom:70px;right:24px;z-index:999;display:flex;align-items:center;gap:10px;
+    background:#25D366;color:#fff;padding:14px 22px;border-radius:999px;font-size:14px;font-weight:700;
+    box-shadow:0 8px 28px rgba(37,211,102,0.35);animation:cta-bounce 2.5s ease-in-out infinite;
+  }
+  @keyframes cta-bounce{0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#top" class="logo">
+      <span class="logo-mark">Sara Rauber</span>
+      <span class="logo-sub">Clínica </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#espaco">Espaço</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+    </ul>
+    <div class="nav-cta">
+      <!-- EDITAR: Link WhatsApp -->
+      <a href="https://wa.me/5565999999999" target="_blank" class="btn btn-primary">Agendar horário</a>
+      <button class="nav-toggle"><span></span></button>
+    </div>
+  </nav>
+  <div class="mobile-panel">
+    <a href="#servicos">Serviços</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="https://wa.me/5565999999999" target="_blank">Agendar horário</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <span class="hero-eyebrow reveal">Harmonização Facial e Estética regenerativa</span>
+        <h1 class="reveal reveal-delay-1">Cuidar de você é o único compromisso da nossa <em>agenda</em>.</h1>
+        <p class="reveal reveal-delay-2">Realçando sua beleza e trazendo sua melhor versão.</p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="https://wa.me/5565999999999" target="_blank" class="btn btn-primary">Agendar horário</a>
+        </div>
+      </div>
+      <div class="hero-media reveal reveal-delay-2">
+        <div class="hero-media-frame"><img src="./img/hero.webp" alt="Sala de atendimento"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTADORES -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="reveal"><div class="stat-num" data-target="4.9" data-decimals="1">0</div><div class="stat-label">Nota média</div></div>
+        <div class="reveal reveal-delay-1"><div class="stat-num" data-target="500" data-suffix="+">0</div><div class="stat-label">Avaliações</div></div>
+        <div class="reveal reveal-delay-2"><div class="stat-num" data-target="8">0</div><div class="stat-label">Anos de experiência</div></div>
+        <div class="reveal reveal-delay-3"><div class="stat-num" data-target="3200" data-suffix="+">0</div><div class="stat-label">Atendimentos</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE COM CARROSSEL -->
+  <section class="about" id="espaco">
+    <div class="container">
+      
+      <!-- INÍCIO DO CARROSSEL DE FOTOS DO ESPAÇO -->
+      <div class="swiper about-swiper reveal">
+        <div class="swiper-wrapper">
+          <!-- EDITAR: Adicione as 3 fotos do estabelecimento aqui -->
+          <div class="swiper-slide"><img src="./img/sobre1.webp" alt="Espaço 1"></div>
+          <div class="swiper-slide"><img src="./img/sobre2.webp" alt="Espaço 2"></div>
+          <div class="swiper-slide"><img src="./img/sobre3.webp" alt="Espaço 3"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div>
+        <span class="eyebrow reveal">Sobre Nós</span>
+        <h2 class="reveal reveal-delay-1">Nosso jeito de cuidar</h2>
+        <p class="reveal reveal-delay-2">Aqui, cada atendimento começa com uma conversa, não com um formulário. Entendemos sua necessidade, sua rotina e o que você espera antes de qualquer procedimento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">Serviços</span>
+        <h2 class="reveal reveal-delay-1">O que fazemos por você</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal"><div class="service-media"><img src="./img/servico1.webp" alt="Facial"></div><div class="service-body"><h3>Harmonização Facial</h3></div></div>
+        <div class="service-card reveal reveal-delay-1"><div class="service-media"><img src="./img/servico2.webp" alt="Cabelo"></div><div class="service-body"><h3>Rinomodelação</h3></div></div>
+        <div class="service-card reveal reveal-delay-2"><div class="service-media"><img src="./img/servico3.webp" alt="Unhas"></div><div class="service-body"><h3>Full Face</h3></div></div>
+        <div class="service-card reveal reveal-delay-3"><div class="service-media"><img src="./img/servico4.webp" alt="Corpo"></div><div class="service-body"><h3>Prenchimento Labial</h3></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS (Ajustado) -->
+  <section id="resultados">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">Transformações</span>
+        <h2 class="reveal reveal-delay-1">Resultados reais</h2>
+      </div>
+      
+      <!-- BLOCO DE 3 FOTOS LIMPAS -->
+      <div class="results-grid">
+        <!-- EDITAR: Fotos de resultados do cliente -->
+        <figure class="reveal"><img src="./img/resultado1.webp" alt="Resultado 1"></figure>
+        <figure class="reveal reveal-delay-1"><img src="./img/resultado2.webp" alt="Resultado 2"></figure>
+        <figure class="reveal reveal-delay-2"><img src="./img/resultado3.webp" alt="Resultado 3"></figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS (CARROSSEL ESTILO NETFLIX) -->
+  <section class="testimonials" id="depoimentos">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">Depoimentos</span>
+        <h2 class="reveal reveal-delay-1">Quem já passou por aqui</h2>
+      </div>
+      
+      <!-- INÍCIO DO CARROSSEL DE DEPOIMENTOS -->
+      <div class="swiper testi-swiper reveal reveal-delay-2">
+        <div class="swiper-wrapper">
+          
+          <!-- Card 1 -->
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
+              <p>Cheguei tensa depois de um dia corrido e saí completamente renovada. O atendimento é incrível.</p>
+              <div class="testi-person"><div class="testi-avatar">MS</div><div><div class="testi-name">Marina S.</div><div class="testi-role">Cliente desde 2023</div></div></div>
+            </div>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
+              <p>Único lugar onde eu confio de olhos fechados para cuidar da minha pele.</p>
+              <div class="testi-person"><div class="testi-avatar">JR</div><div><div class="testi-name">Juliana R.</div><div class="testi-role">Cliente desde 2022</div></div></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
+              <p>Ambiente lindo, equipe gentil e resultado que aparece de verdade.</p>
+              <div class="testi-person"><div class="testi-avatar">CT</div><div><div class="testi-name">Camila T.</div><div class="testi-role">Cliente desde 2024</div></div></div>
+            </div>
+          </div>
+          
+          <!-- Card 4 (Adicionado para dar o efeito de loop infinito) -->
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.3l6.1-.7z"/></svg></div>
+              <p>Produtos maravilhosos e as massagens me tiram toda a dor nas costas!</p>
+              <div class="testi-person"><div class="testi-avatar">AM</div><div><div class="testi-name">Amanda M.</div><div class="testi-role">Cliente desde 2023</div></div></div>
+            </div>
+          </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FINAL E MAPA INTERATIVO -->
+  <section id="contato" style="padding:0 0 120px;">
+    <div class="cta-final reveal">
+      <div>
+        <h2>Vamos agendar seu horário?</h2>
+        <p>Separe um horário só seu. É rápido de agendar e ainda mais bom de sentir.</p>
+        <a href="https://wa.me/5565999999999" target="_blank" class="btn btn-primary">Agendar pelo WhatsApp</a>
+      </div>
+      
+      <div class="cta-contact">
+        <div class="cta-contact-item">
+          <div class="k">Endereço</div>
+          <div class="v">Rua Exemplo, 123, Bairro Central - Cuiabá/MT</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="k">Horário</div>
+          <div class="v">Terça a sábado, 9h às 19h</div>
+        </div>
+        
+        <!-- MAPA INTERATIVO GOOGLE MAPS -->
+        <div class="map-wrapper">
+          <!-- EDITAR: Cole o iframe do Google Maps do seu cliente aqui -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122556.70295147573!2d-56.17720986799042!3d-15.601550995574345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x939db16e35570d55%3A0xd211e4f4dc5b23d5!2sCuiab%C3%A1%2C%20MT!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <span class="logo-mark">Sara Rauber</span>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul><li><a href="#servicos">Serviços</a></li><li><a href="#espaco">Espaço</a></li><li><a href="#resultados">Resultados</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Atendimento</h4>
+        <ul><li>Terça a sábado</li><li>(65) 99999-9999</li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Redes</h4>
+        <ul><li><a href="#" target="_blank">Instagram</a></li><li><a href="#" target="_blank">WhatsApp</a></li></ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CTA Fixo WhatsApp -->
+<a href="https://wa.me/5565999999999" target="_blank" class="cta-fixed">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  Agendar via WhatsApp
+</a>
+
+<!-- =========================================================
+     SCRIPTS: SWIPER JS, ANIMAÇÕES E MENU
+     ========================================================= -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Inicializa Carrossel "Sobre Nós"
+  const aboutSwiper = new Swiper('.about-swiper', {
+    loop: true,
+    autoplay: { delay: 3500, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    effect: 'fade', // Transição suave entre as fotos
+  });
+
+  // Inicializa Carrossel "Depoimentos"
+  const testiSwiper = new Swiper('.testi-swiper', {
+    loop: true,
+    slidesPerView: 1, // Celular exibe 1 card
+    spaceBetween: 24,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    breakpoints: {
+      768: { slidesPerView: 2 }, // Tablet exibe 2 cards
+      1024: { slidesPerView: 3 } // PC exibe 3 cards
+    }
+  });
+
+  // Animação de entrada (Reveal)
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Contadores Animados
+  const counters = document.querySelectorAll('.stat-num');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+    });
+  }, {threshold:0.4});
+  counters.forEach(el => counterObserver.observe(el));
+  function animateCounter(el){
+    const target=parseFloat(el.dataset.target), dec=parseInt(el.dataset.decimals||"0"), suf=el.dataset.suffix||"";
+    const start=performance.now();
+    function tick(now){
+      const p=Math.min((now-start)/1600,1), eased=1-Math.pow(1-p,3), val=target*eased;
+      el.textContent=dec>0?val.toFixed(dec).replace('.',',')+suf:Math.round(val).toLocaleString('pt-BR')+suf;
+      if(p<1)requestAnimationFrame(tick);
+    } requestAnimationFrame(tick);
+  }
+
+  // Menu Mobile
+  const navToggle = document.querySelector('.nav-toggle');
+  const mobilePanel = document.querySelector('.mobile-panel');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobilePanel.classList.toggle('is-open');
+    navToggle.classList.toggle('is-open', isOpen);
+  });
+  mobilePanel.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => { mobilePanel.classList.remove('is-open'); navToggle.classList.remove('is-open'); });
+  });
+</script>
+
+</body>
+</html>
